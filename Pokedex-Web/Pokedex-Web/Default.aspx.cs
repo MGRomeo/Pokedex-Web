@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
 
 namespace Pokedex_Web
 {
@@ -11,7 +12,9 @@ namespace Pokedex_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            PokemonNegocio negocio = new PokemonNegocio();
+            pokeRepeater.DataSource = negocio.listarConSP();
+            pokeRepeater.DataBind();
         }
     }
 }
