@@ -122,6 +122,32 @@ namespace negocio
             }
         }
 
+        public void AgregarConSp(Pokemon nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string sp = "storedAltaPokemon";
+                datos.setearSp(sp);
+                datos.setearParametro("@Numero", nuevo.Numero);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
+                datos.setearParametro("@IdTipo", nuevo.Tipo.Id);
+                datos.setearParametro("@IdDebilidad", nuevo.Debilidad.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void modificar(Pokemon poke)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -147,6 +173,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
 
         public List<Pokemon> filtrar(string campo, string criterio, string filtro)
         {

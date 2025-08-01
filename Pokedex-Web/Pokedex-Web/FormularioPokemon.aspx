@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:ScriptManager runat="server" />
     <div class="row">
 
         <div class="col-6">
@@ -39,15 +39,21 @@
                 <label for="txtDescripcion" class="form-label">Descipción</label>
                 <asp:TextBox TextMode="MultiLine" ID="txtDescripcion" CssClass="form-control" runat="server" />
             </div>
-            <div class="mb-3">
-                <label for="txtUrlImagen" class="form-label">
-                    Url Imagen
-                </label>
-                <asp:TextBox ID="txtUrlImagen" CssClass="form-control" runat="server" />
-            </div>
-            <div>
-                <asp:Image ID="imgUrl" ImageUrl="https://www.smaroadsafety.com/wp-content/uploads/2022/06/no-pic.png" runat="server" />
-            </div>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="mb-3">
+                        <label for="txtUrlImagen" class="form-label">
+                            Url Imagen
+                        </label>
+                        <asp:TextBox ID="txtUrlImagen" CssClass="form-control" OnTextChanged="txtUrlImagen_TextChanged" AutoPostBack="true" runat="server" />
+                    </div>
+
+                    <div>
+                        <asp:Image ID="imgUrl" ImageUrl="https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-thumbnail-graphic-illustration-vector-png-image_40966590.jpg" Width="50%" runat="server" />
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
         </div>
     </div>
 </asp:Content>
